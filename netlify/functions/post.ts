@@ -36,7 +36,6 @@ const getSlots = async (url: string) => {
     }),
   });
   const dataStr = await res.text();
-  return dataStr;
   let data;
   try {
     data = JSON.parse(dataStr);
@@ -44,6 +43,7 @@ const getSlots = async (url: string) => {
     console.log("Couldn't parse JSON. Response text below");
     console.log("res.status", res.status);
     console.log(dataStr);
+    return dataStr;
     throw e;
   }
   return data;
@@ -80,7 +80,6 @@ const handler: Handler = async (event, context) => {
   const urls = locationIds.map(
     (id) => `${process.env.PROXY_URL}/public/locations/${id}/date/${dateString}/slots`
   );
-  return ok(event, urls);
   const data = await Promise.all(urls.map((url) => getSlots(url)));
   return ok(event, data);
 };
