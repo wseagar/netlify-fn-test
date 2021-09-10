@@ -36,6 +36,7 @@ const getSlots = async (url: string) => {
     }),
   });
   const dataStr = await res.text();
+  return dataStr;
   let data;
   try {
     data = JSON.parse(dataStr);
