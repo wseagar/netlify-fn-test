@@ -52,6 +52,7 @@ const handler: Handler = async (event, context) => {
   if (!process.env.PROXY_URL || !process.env.VAXXNZ_SHARED_KEY) {
     return err(event, "Env variables not configured correctly");
   }
+  return ok(event, {event, env: process.env})
   if (event.headers["X-Vaxxnz-Key"] !== process.env.VAXXNZ_SHARED_KEY) {
     return err(event, "Key invalid");
   }
