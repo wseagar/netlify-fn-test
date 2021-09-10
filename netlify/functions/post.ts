@@ -78,7 +78,7 @@ const handler: Handler = async (event, context) => {
   }
   
   const urls = locationIds.map(
-    (id) => `${process.env.PROXY_URL}/public/locations/${id}/date/${dateString}`
+    (id) => `${process.env.PROXY_URL}/public/locations/${id}/date/${dateString}/slots`
   );
   const data = await Promise.all(urls.map((url) => getSlots(url)));
   return ok(event, data);
