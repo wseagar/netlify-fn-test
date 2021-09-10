@@ -4,7 +4,6 @@ import moment from "moment";
 const headers = {
   "Content-Type": "application/json",
   "Access-Control-Allow-Methods": "POST",
-  "Access-Control-Allow-Origin": "https://uhaka.io",
 }
 
 type Request = {
