@@ -19,8 +19,8 @@ const headers = (event: HandlerEvent) => {
   }
 }
 
-const err = (event, message) => ({ statusCode: 400, body: JSON.stringify({ success: false, message, headers: headers(event) }) });
-const ok = (event, payload) => ({ statusCode: 400, body: JSON.stringify({ success: true, data: payload, headers: headers(event) }) });
+const err = (event, message) => ({ statusCode: 400, body: JSON.stringify({ success: false, message,  }), headers: headers(event) });
+const ok = (event, payload) => ({ statusCode: 400, body: JSON.stringify({ success: true, data: payload,  }), headers: headers(event) });
 
 const getSlots = async (url: string) => {
   const res = await fetch(url, {
@@ -52,8 +52,7 @@ const handler: Handler = async (event, context) => {
   if (!process.env.PROXY_URL || !process.env.VAXXNZ_SHARED_KEY) {
     return err(event, "Env variables not configured correctly");
   }
-  return ok(event, {event, env: process.env})
-  if (event.headers["X-Vaxxnz-Key"] !== process.env.VAXXNZ_SHARED_KEY) {
+  if (event.headers["x-vaxxnz-key"] !== process.env.VAXXNZ_SHARED_KEY) {
     return err(event, "Key invalid");
   }
 
