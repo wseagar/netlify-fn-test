@@ -35,7 +35,7 @@ const handler: Handler = async (event, context) => {
   }
 
   const urls = locationIds.map(
-    (id) => `${process.env.PROXY_URL}/public/locations/${id}/date/${date}`
+    (id) => `${process.env.PROXY_URL}/public/locations/${id}/date/${dateString}`
   );
 
 
